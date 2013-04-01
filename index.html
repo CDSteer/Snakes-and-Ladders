@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<!--the code in the head sets the title of the page, it imports the sytles, 
+			the script to make the game function and the jQuery libary-->
+		<title>Snakes and Ladders</title>
+		<link href="style.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/gamescripts.js"></script>
+	</head>
+	<body>
+		<div id = "warpper">
+			<h1>Snakes and Ladders</h1>
+			<div id = "gameContaner">
+				<!--the following divs make up the grid they are each given a id so each one can be reconised in the JavaScript-->
+				<script>
+				for (var i=1; i<41; i++){ 
+					document.write("<div class = 'box' id = "+ i +"></div>");
+				}
+				</script>
+			</div>
+			<div class = 'ladder'></div>
+			<div class = 'snake'></div>
+		</div>
+		<div id= "info">
+			<!--Below is the divs for two boxes one for player 1 and one for player 2, the color changes to green when its their turn-->
+			<div id="playercon">
+				<div class= "p1Box currentturn">
+					Player 1 = X
+				</div>
+				<br>
+				<div class= "p2Box">
+					Player 2 = O
+				</div>
+			</div>
+			<div class="resetbutton">
+				<!--When the following button is clicked the page is reloaded-->
+				<input type="button" value="New Game" onclick="reloadPage()" />
+				<br>
+				<!--The following button links to the help page-->
+				<input type="button" value="Roll Dice" onclick="diceRoll()"/>
+			</div>
+			<div class = 'dice'><p class = 'diceText'></p></div>
+		</div>
+	</body>
+</html>

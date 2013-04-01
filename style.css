@@ -1,0 +1,132 @@
+body{
+	background: #CCC;
+}
+/*this code centures the help image*/
+div .help{
+	margin: 0 auto;
+	text-align: center;
+}
+/*H1 is used to style the heading*/
+h1{
+	font-family: helvetica, sans-serif;
+	font-size: 38px;
+	color: #000000;
+	font-weight: bold;
+	text-align: center;
+	
+}
+p{
+	font-family: helvetica, sans-serif;
+	font-size: 16px;
+}
+
+p.diceText{
+	color: #000000;
+	font-weight: bold;
+	text-align: left;
+}
+
+.headingbox{
+	background-color: #CCC;
+	padding: 5px;
+	margin-right: 450px;
+	margin-left: 430px;
+	text-align: center;
+}
+div #warpper{
+	margin: 0 auto;
+
+}
+/*this div holds the game grid*/
+div #gameContaner{
+	height: 350px;
+	width: 840px;
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 200px;
+	
+}
+div #info{
+	margin: 0 auto;
+	height: 350px;
+	width: 350px;
+}
+div #playercon{
+	margin-right: 220px;
+	float: right;
+}
+/*this class is used the sytle each of the box*/
+.box{
+	height: 100px;
+	width: 100px;
+	border: 2px solid #FFFFFF;
+	background-color: #000000;
+	float: left;
+}
+/*positions the rest button*/
+.resetbutton{
+	margin-left: 210px;
+}
+/*styles the box for player one*/
+.p1Box{
+	margin: 0 auto;
+	height: 20px;
+	width: 100px;
+	border: 2px solid #FFFFFF;
+	background-color: #000000;
+	color: #ffffff;
+	padding: 5px;
+}
+/*styles the box for player two*/
+.p2Box{
+	margin: 0 auto;
+	height: 20px;
+	width: 100px;
+	border: 2px solid #FFFFFF;
+	background-color: #000000;
+	color: #ffffff;
+	padding: 5px;
+}
+/*this class this used in the jQuery to be added to the player boxes to make them green when its that players turn*/
+.currentturn{
+	background: green;
+}
+/*this make the box take a new line*/
+.newline{
+	clear: left;
+}
+/*this class can be added to boxes to add a X*/
+.p1{
+	background-image: url(images/cross.png);
+	background-repeat: no-repeat;
+}
+/*this class can be added to boxes to add a O*/	
+.p2{
+	background-image: url(images/nought.png);
+	background-repeat: no-repeat;
+}
+
+.ladder{
+	background-image: url(images/ladder1.png);
+	background-repeat: no-repeat;
+	position:absolute;
+	height: 180px;
+	width: 67px;
+	left: 864px;
+	top: 410px;
+}
+
+.snake{
+	background-image: url(images/snake.png);
+	background-repeat: no-repeat;
+	position:absolute;
+	height: 290px;
+	width: 175px;
+	left: 424px;
+	top: 160px;
+}
+.dice{
+	height: 290px;
+	width: 175px;
+}
+
