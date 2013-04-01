@@ -1,58 +1,83 @@
-var turn = "p1";
 var turnCount = 0;
-var p1Square = 0;
-var p2Square = 0;
+function player(icon, square, turn) {
+	this.icon = icon;
+	this.square = square;
+	this.turn = turn;
+	
+	this.setSquare = setSquare;
+	function setSquare(newSquare){
+		this.square = newSquare;
+	}
+	this.setTurn = setTurn;
+	function setTurn(newTurn){
+		this.turn = newTurn;
+	}
+}
 
-function reloadPage() {
-	window.location.reload()
+var p1 = new player("p1", 0, true);
+var p2 = new player("p2", 0, false);
+
+function changTurn() {
+	if(p1.turn == true) {
+		p1.setTurn(false);
+		p2.setTurn(true);
+		$('.p1Box').removeClass('currentturn');
+		$('.p2Box').addClass('currentturn');
+	} else if (p2.turn == true) {
+		p1.setTurn(true);
+		p2.setTurn(false);
+		$('.p1Box').addClass('currentturn');
+		$('.p2Box').removeClass('currentturn');
+	}
 }
 
 function diceRoll() {
 	var roll = randomNum(1,6);
 	$("p").remove(".diceText");
-	$(".dice").append("<p>Roll: " + roll + "Turn: " + turn + " Turn Count: " + turnCount + " squs: " + p1Square+"/"+p2Square+"</p>");
-	if(turn == "p1") {
-		p1Square = move(roll, p1Square);
-		turn = "p2";
-	} else if (turn == "p2") {
-		p2Square = move(roll, p2Square);
-		turn = "p1";
+	$(".dice").append("<p>Roll: " + roll + " " + p1.turn + p1.square + "/" + p2.turn + p2.square + "</p>");
+	if(p1.turn == true) {
+		var p1Move = move(p1.icon, roll, p1.square);
+		p1.setSquare(p1Move);
+	} else if (p2.turn == true){
+		var p2Move = move(p2.icon, roll, p2.square);
+		p2.setSquare(p2Move);
 	}
+	changTurn();
 	turnCount++;
-	win(p1Square, p2Square);
+	win(p1.square, p2.square);
 }
 
 
-function move(roll, square) {
-	$('#'+square).removeClass(turn);
+function move(player, roll, square) {
+	$('#'+square).removeClass(player);
 	square = square + roll;
-	//if (turnCount > 0){
-		//p1Square = collison();
-	//}
-	$('#'+square).addClass(turn);
-	if (square == 27){
-		$('#'+square).removeClass(turn);
-		//p1Square = collison();
-		$('#4').addClass(turn);
-		square = 4;
+	if (turnCount > 0){
+		square = collision(square);
 	}
-	if (square == 31){
-		$('#'+square).removeClass(turn);
-		//p1Square = collison();
-		$('#39').addClass(turn);
-		square = 39;
-	}
+	$('#'+square).addClass(player);
+	square = spcSquare(player, square, 27, 4);
+	square = spcSquare(player, square, 31, 39);
 	return square;
 
 }
 
-function collison() {
-	if (p1Square == p2Square){
-		if (turn == "p1"){
-			p1Square--;
-		} else if (turn == "p2"){
-			p2Square--;
-		}
+function collision(square) {
+	//alert(p1.square, p2.square);
+	if (p1.square == p2.square){
+		square--;
+	}
+	return square;
+}
+
+function spcSquare(player, square, type1, type2) {
+	if (square == type1){
+		$('#'+square).removeClass(player);
+		square = collision(square);
+		$('#'+type2).addClass(player);
+		square = type2;
+		return square;
+	} else {
+		return square;
 	}
 }
 
@@ -61,12 +86,12 @@ function win(p1Square, p2Square) {
 		$('#'+p1Square).removeClass('p1');
 		$('#40').addClass('p1');
 		alert("Player 1 has won!");
-		window.location.reload()
+		reloadPage();
 	} else if (p2Square >= 40){
 		$('#'+p2Square).removeClass('p2');
 		$('#40').addClass('p2');
 		alert("Player 2 has won!");
-		window.location.reload()
+		reloadPage();
 	}
 }
 
@@ -74,17 +99,6 @@ function randomNum(from,to) {
     return Math.floor(Math.random()*(to-from+1)+from);
 }
 
-/*
-function setSnakes() {
-	snakeSquare1 = randomNum(2,31);
-	$('#'+snakeSquare1).addClass('snake1');
-	snakeSquare2 = randomNum(1, (snakeSquare1-1));
-	$('#'+snakeSquare2).addClass('snake2');
+function reloadPage() {
+	window.location.reload()
 }
-function setLadder() {
-	ladderSquare1 = randomNum(2,29);
-	$('#'+ladderSquare1).addClass('ladder1');
-	ladderSquare2 = randomNum((square1, 30);
-	$('#'+ladderSquare2).addClass('ladder2');
-}
-*/

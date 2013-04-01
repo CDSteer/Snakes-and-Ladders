@@ -8,7 +8,7 @@ Two players take it in turns to click roll dice until someone win by reaching th
 
 ## Todo
 
-* Fix two players being on the same square
+* ~~Fix two players being on the same square~~ (player is moved one square before)
 * Resolution problems with regard to snakes and ladders on the board.
 * Make graphics of an onscreen mouse
 * Add option for more players
@@ -16,3 +16,5 @@ Two players take it in turns to click roll dice until someone win by reaching th
 ### Test it here:
 
 http://2.101.226.182/~cdsteer/Snakes-And-Ladders/
+
+Works best at 1280 x 800 resolutions.
